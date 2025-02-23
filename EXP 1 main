@@ -46,35 +46,23 @@ o	DFS might not provide the shortest solution but will eventually reach the goal
 from collections import deque
 
 def get_next_states(current, x, y):
-    """Generate all valid next states from the current state."""
     next_states = []
     a, b = current  # Current amounts in jug1 and jug2
 
-    # 1. Fill Jug1
     next_states.append((x, b))
-
-    # 2. Fill Jug2
     next_states.append((a, y))
-
-    # 3. Empty Jug1
     next_states.append((0, b))
-
-    # 4. Empty Jug2
     next_states.append((a, 0))
 
-    # 5. Pour Jug1 -> Jug2
     pour_amount = min(a, y - b)
     next_states.append((a - pour_amount, b + pour_amount))
 
-    # 6. Pour Jug2 -> Jug1
     pour_amount = min(b, x - a)
     next_states.append((a + pour_amount, b - pour_amount))
 
     return next_states
 
-
 def bfs_water_jug(x, y, d):
-    """Breadth-first search to find a solution to the water jug problem."""
     queue = deque([(0, 0)])  # Initial state
     visited = set()
     path = {}
@@ -82,19 +70,14 @@ def bfs_water_jug(x, y, d):
     while queue:
         current = queue.popleft()
 
-        # Print current state
         print(f"Current state: {current}")
 
-        # Check goal condition
         if current[0] == d or current[1] == d:
             return "Solution Found"
 
         visited.add(current)
 
-        # Generate next states using the helper function
         next_states = get_next_states(current, x, y)
-
-        # Print next states
         print(f"Next states: {next_states}\n")
 
         for state in next_states:
@@ -104,34 +87,24 @@ def bfs_water_jug(x, y, d):
 
     return "No Solution"
 
-
-# Example usage
 x, y, d = 4, 3, 2
 print(bfs_water_jug(x, y, d))
 
 ---------------------DFS--------------------------
 def get_next_states(current, x, y):
-    """Generate all valid next states from the current state."""
     next_states = []
     a, b = current
 
-    # 1. Fill Jug X
     next_states.append((x, b))
-    # 2. Fill Jug Y
     next_states.append((a, y))
-    # 3. Empty Jug X
     next_states.append((0, b))
-    # 4. Empty Jug Y
     next_states.append((a, 0))
-    # 5. Pour X -> Y
     pour = min(a, y - b)
     next_states.append((a - pour, b + pour))
-    # 6. Pour Y -> X
     pour = min(b, x - a)
     next_states.append((a + pour, b - pour))
 
     return next_states
-
 
 def dfs_water_jug(x, y, d):
     stack = [(0, 0)]  # Initial state
@@ -140,17 +113,14 @@ def dfs_water_jug(x, y, d):
 
     while stack:
         current = stack.pop()
-        
-        # Print the current state
+
         print(f"Current state: {current}")
 
-        # Check goal condition
         if current[0] == d or current[1] == d:
             return "Solution Found"
 
         visited.add(current)
 
-        # Generate and print next possible states
         next_states = get_next_states(current, x, y)
         print(f"Next states: {next_states}\n")
         
@@ -161,7 +131,5 @@ def dfs_water_jug(x, y, d):
 
     return "No Solution"
 
-# Example usage
 x, y, d = 4, 3, 2
 print(dfs_water_jug(x, y, d))
-
