@@ -1,0 +1,43 @@
+Objective:
+To implement the Water Jug Problem using Breadth-First Search (BFS) and Depth-First Search (DFS) in Python.
+
+Problem Statement:
+Given two jugs with capacities X and Y liters and an unlimited water supply, determine the sequence of operations required to measure exactly D liters using either BFS or DFS.
+
+Operations Allowed:
+1.	Fill a jug completely.
+2.	Empty a jug completely.
+3.	Pour water from one jug to another until the first jug is empty or the second jug is full.
+
+Step-by-Step Experimental Procedure
+1.	Understand the Problem Statement:
+o	Given two jugs of specific capacities and a target amount, devise a way to reach the exact measurement.
+o	Understand the BFS and DFS approaches to explore possible steps.
+
+2.	Design the State Representation:
+o	The state of the system is represented as (A, B), where:
+	A = Current water level in Jug X
+	B = Current water level in Jug Y
+
+3.	Define the Allowed Transitions:
+o	Fill Jug X: (X, B)
+o	Fill Jug Y: (A, Y)
+o	Empty Jug X: (0, B)
+o	Empty Jug Y: (A, 0)
+o	Pour water from Jug X to Jug Y.
+o	Pour water from Jug Y to Jug X.
+
+4.	Implement BFS and DFS:
+o	Use a queue (deque) for BFS to ensure the shortest path is found first.
+o	Use a stack for DFS to explore depth-first paths.
+o	Track visited states to avoid redundant calculations.
+
+5.	Run the Program with Example Inputs:
+o	Example:
+Jug 1 Capacity: 4L  
+Jug 2 Capacity: 3L  
+Target Amount: 2L  
+
+6.	Analyze the Outputs and Compare BFS & DFS:
+o	BFS finds the shortest sequence of steps.
+o	DFS might not provide the shortest solution but will eventually reach the goal if a solution exists.
