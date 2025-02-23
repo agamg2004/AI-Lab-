@@ -9,7 +9,7 @@ Operations Allowed:
 2.	Empty a jug completely.
 3.	Pour water from one jug to another until the first jug is empty or the second jug is full.
 
-Step-by-Step Experimental Procedure
+Step-by-Step Experimental Procedure:
 1.	Understand the Problem Statement:
 o	Given two jugs of specific capacities and a target amount, devise a way to reach the exact measurement.
 o	Understand the BFS and DFS approaches to explore possible steps.
@@ -41,3 +41,13 @@ Target Amount: 2L
 6.	Analyze the Outputs and Compare BFS & DFS:
 o	BFS finds the shortest sequence of steps.
 o	DFS might not provide the shortest solution but will eventually reach the goal if a solution exists.
+
+Compare BFS vs. DFS:
+o	Identify which algorithm gives the shortest solution.
+
+BFS is the preferred algorithm when the goal is to find the shortest solution in terms of the number of steps, as it guarantees optimality.
+
+o	Understand how DFS might explore unnecessary paths before reaching the goal.
+
+ DFS may explore many unnecessary paths before reaching the goal, leading to longer search times and potentially missing the shortest path. This characteristic makes DFS less suitable for problems where the shortest path is critical.
+
