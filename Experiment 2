@@ -49,3 +49,55 @@ o	Store the movement path.
 
 3.	Output the path taken by the robot.
 
+Code:
+import numpy as np
+from queue import PriorityQueue
+
+grid = np.array([
+    [0, 1, 0, 0, 0],
+    [0, 0, 1, 1, 0],
+    [0, 0, 0, 1, 0],
+    [0, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0]
+])
+
+start = (0, 0) 
+goal = (5, 5)  
+
+moves = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+def calculate_difference(current, goal):
+    return abs(goal[0] - current[0]) + abs(goal[1] - current[1])
+
+def is_valid_move(grid, position):
+    x, y = position
+    return 0 <= x < grid.shape[0] and 0 <= y < grid.shape[1] and grid[x, y] == 0
+
+def means_end_analysis(grid, start, goal):
+    current = start
+    path = [current]
+    visited = set([start]) 
+    
+    while current != goal:
+        pq = PriorityQueue()
+        
+        for move in moves:
+            new_position = (current[0] + move[0], current[1] + move[1])
+            
+            if is_valid_move(grid, new_position) and new_position not in visited:
+                diff = calculate_difference(new_position, goal)
+                pq.put((diff, new_position))  # Store as (priority, position)
+
+        if pq.empty():
+            print("No valid moves available! The robot is stuck.")
+            return None
+        
+        _, next_move = pq.get()
+        current = next_move
+        path.append(current)
+        visited.add(current)
+
+    return path
+
+robot_path = means_end_analysis(grid, start, goal)
+print("Robot Path:", robot_path)
