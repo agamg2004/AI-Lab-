@@ -110,14 +110,14 @@ def dfs_water_jug(x, y, d):
         visited.add(current)
         next_states = []
 
-        next_states.append((x, current[1], "Fill Jug 1"))
-        next_states.append((current[0], y, "Fill Jug 2"))
-        next_states.append((0, current[1], "Empty Jug 1"))
-        next_states.append((current[0], 0, "Empty Jug 2"))
+        next_states.append(x, current[1])
+        next_states.append(current[0], y))
+        next_states.append(0, current[1])
+        next_states.append(current[0], 0)
         pour_to_second = min(current[0], y - current[1])
-        next_states.append((current[0] - pour_to_second, current[1] + pour_to_second, "Pour Jug 1 to Jug 2"))
+        next_states.append(current[0] - pour_to_second, current[1] + pour_to_second)
         pour_to_first = min(current[1], x - current[0])
-        next_states.append((current[0] + pour_to_first, current[1] - pour_to_first, "Pour Jug 2 to Jug 1"))
+        next_states.append(current[0] + pour_to_first, current[1] - pour_to_first)
 
         for state in next_states:
             if (state[0], state[1]) not in visited:
