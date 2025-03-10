@@ -92,7 +92,7 @@ def means_end_analysis(grid, start, goal):
             print("No valid moves available! The robot is stuck.")
             return None
         
-        _, next_move = pq.get()
+         next_move = pq.get()
         current = next_move
         path.append(current)
         visited.add(current)
