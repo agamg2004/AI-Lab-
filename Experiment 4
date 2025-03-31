@@ -1,0 +1,29 @@
+Objective:
+The goal of this lab exercise is to solve the Travelling Salesman Problem (TSP) using Artificial Intelligence techniques. TSP is a combinatorial optimization problem where a salesman must visit a set of cities exactly once and return to the starting city while minimizing the total travel cost (distance or time).
+This exercise introduces heuristic and optimization techniques such as Brute Force Search, Dynamic Programming, and Genetic Algorithms for solving TSP.
+
+Steps to Solve the Problem:
+	Understand the Problem Statement:
+	Given a set of cities and the distances between them, find the shortest possible route that visits each city once and returns to the starting point.
+	Formulate the Problem:
+	Represent the cities as a graph where nodes represent cities and edges represent the distances between them.
+	Choose an Algorithm:
+	Brute Force Approach (Exponential Time Complexity)
+	Dynamic Programming (Held-Karp Algorithm) (O(n^2×2^n))
+	Heuristic Approach (Genetic Algorithm, Simulated Annealing, Ant Colony Optimization, etc.)
+	Implement the Algorithm:
+	Implement the chosen approach in Python.
+	Provide a function to read and store distances between cities.
+	Develop a function to generate and evaluate all possible routes.
+	Optimize the route selection to find the shortest path.
+	Test the Solution:
+	Use sample city coordinates and distances.
+	Run the algorithm and compare the solutions.
+
+Algorithm: Dynamic Programming (Held-Karp Algorithm)
+Step-by-Step Approach:
+1.	Define a recursive function to find the shortest route using memoization.
+2.	Use a bitmasking technique to store visited cities efficiently.
+3.	Maintain a lookup table (cache) to avoid recomputation.
+4.	Iterate over all possible cities and compute the shortest path dynamically.
+
