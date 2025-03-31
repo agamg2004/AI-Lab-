@@ -1,0 +1,80 @@
+Objective
+The objective of this laboratory exercise is to implement a solution to the 4-Queens Problem using Artificial Intelligence techniques. The students will:
+•	Understand the constraint satisfaction problem (CSP) approach to solving the N-Queens problem.
+•	Learn and implement backtracking search as a method for finding a valid arrangement of four queens on a 4×4 chessboard.
+•	Explore alternative AI-based approaches such as Hill Climbing and Genetic Algorithms.
+•	Develop a Python program to solve the problem efficiently
+
+Understanding the 4-Queens Problem
+The N-Queens problem is a classic CSP problem in which N queens must be placed on an N×N chessboard such that:
+•	No two queens share the same row.
+•	No two queens share the same column.
+•	No two queens share the same diagonal.
+For N = 4, the goal is to find all valid placements of 4 queens on a 4×4 board.
+
+Why is this a Constraint Satisfaction Problem?
+The problem is solved by assigning each queen a position while satisfying the above constraints. AI techniques such as backtracking, heuristics, and search algorithms can be used to solve it.
+
+Algorithm for Solving 4-Queens Using Backtracking:
+
+Inputs:
+•	A 4×4 chessboard initialized with no queens.
+•	A recursive function to explore all possible queen placements row-wise.
+
+Outputs:
+•	A valid board configuration with four queens placed correctly.
+•	Multiple solutions can exist, and the program should find all of them.
+
+Algorithm:
+1.	Initialize an empty chessboard of size 4×4.
+2.	Place queens row-wise recursively:
+For each row, try placing a queen in each column.
+Check if placing a queen is safe (i.e., it does not attack another queen).
+If safe, place the queen and move to the next row.
+3.	Backtrack if no valid placement exists:
+Remove the last placed queen and try another column in the previous row.
+4.	Repeat until all queens are placed.
+5.	Print all valid solutions.
+
+Code:
+def print_board(board):
+    for row in board:
+        print(" ".join(row))
+    print("\n")
+
+def is_safe(board, row, col):
+    # Check this column on upper side
+    for i in range(row):
+        if board[i][col] == 'Q':
+            return False
+
+    # Check upper diagonal on left side
+    for i, j in zip(range(row, -1, -1), range(col, -1, -1)):
+        if board[i][j] == 'Q':
+            return False
+
+    # Check upper diagonal on right side
+    for i, j in zip(range(row, -1, -1), range(col, len(board))):
+        if board[i][j] == 'Q':
+            return False
+
+    return True
+
+def solve_n_queens_util(board, row):
+    if row >= len(board):
+        print_board(board)
+        return
+
+    for col in range(len(board)):
+        if is_safe(board, row, col):
+            board[row][col] = 'Q'  # Place queen
+            solve_n_queens_util(board, row + 1)  # Recur to place rest of the queens
+            board[row][col] = '.'  # Backtrack
+
+def solve_n_queens(n):
+    board = [['.' for _ in range(n)] for _ in range(n)]
+    solve_n_queens_util(board, 0)
+
+# Set N = 4 for the 4-Queens problem
+N = 10
+solve_n_queens(N)
