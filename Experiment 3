@@ -52,7 +52,7 @@ def solve_n_queens(board, row, n):
 
     for col in range(n):
         if is_safe(board, row, col):
-            board[row] = col  # Place queen
+            board[row] = col 
             solve_n_queens(board, row + 1, n) 
             board[row] = -1  
 
