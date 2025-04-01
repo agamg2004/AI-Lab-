@@ -52,18 +52,15 @@ def tsp(mask, pos):
     for city in range(N):
         if (mask & (1 << city)) == 0:
             new_ans = distance_matrix[pos][city] + tsp(mask | (1 << city), city)
-            ans = min(ans, new_ans)  # Update the minimum distance
+            ans = min(ans, new_ans)
 
     memo[(mask, pos)] = ans
     return ans
 
 def main():
-    start_city = 0  # Starting from city 0
+    start_city = 0  
     optimal_distance = tsp(1 << start_city, start_city)
     print(f"Optimal TSP Tour Distance: {optimal_distance}")
     
 if __name__ == "__main__":
     main()
-	Test the Solution:
-	Use sample city coordinates and distances.
-	Run the algorithm and compare the solutions.
