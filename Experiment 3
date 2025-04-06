@@ -1,5 +1,6 @@
 Objective
-The objective of this laboratory exercise is to implement a solution to the 4-Queens Problem using Artificial Intelligence techniques. The students will:
+The objective of this laboratory exercise is to implement a solution to the 4-Queens Problem using Artificial Intelligence techniques. 
+The students will:
 •	Understand the constraint satisfaction problem (CSP) approach to solving the N-Queens problem.
 •	Learn and implement backtracking search as a method for finding a valid arrangement of four queens on a 4×4 chessboard.
 •	Explore alternative AI-based approaches such as Hill Climbing and Genetic Algorithms.
