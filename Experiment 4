@@ -29,7 +29,6 @@ Step-by-Step Approach:
 4.Iterate over all possible cities and compute the shortest path dynamically.
 
 Code:
-import itertools
 import numpy as np
 N = 4 
 
