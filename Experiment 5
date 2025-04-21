@@ -1,0 +1,177 @@
+Objective: In this exercise you will study a simple medical diagnosis system as given below and design any one of the eight available scenarios,
+            for implementing practical rule based systems, given afterwards.
+
+Example Application: Medical Diagnosis System
+This system will take symptoms as input and provide a possible diagnosis based on predefined rules.
+Approach:
+1.	Define a set of medical rules (IF-THEN logic).
+2.	Take user input for symptoms.
+3.	Match symptoms with rules.
+4.	Provide a diagnosis based on matched rules.
+
+Python Implementation:
+# Rule-Based Medical Diagnosis System
+
+def diagnose(symptoms):
+    """
+    Rule-based diagnosis based on input symptoms.
+    :param symptoms: List of symptoms provided by the user.
+    :return: Possible diagnosis.
+    """
+    
+    rules = {
+        "Flu": ["fever", "cough", "fatigue", "body ache"],
+        "Common Cold": ["cough", "sneezing", "runny nose", "sore throat"],
+        "COVID-19": ["fever", "cough", "loss of taste", "difficulty breathing"],
+        "Allergy": ["sneezing", "runny nose", "itchy eyes", "rash"],
+        "Stomach Infection": ["nausea", "vomiting", "diarrhea", "stomach pain"]
+    }
+
+    possible_diseases = []
+
+    for disease, rule_symptoms in rules.items():
+        match_count = sum(1 for symptom in symptoms if symptom in rule_symptoms)
+        if match_count >= len(rule_symptoms) / 2:  # At least 50% match
+            possible_diseases.append(disease)
+
+    if possible_diseases:
+        return f"Possible Diagnoses: {', '.join(possible_diseases)}"
+    else:
+        return "No matching diagnosis found. Consult a doctor."
+
+# User Input
+user_symptoms = input("Enter your symptoms (comma-separated): ").lower().split(", ")
+
+# Diagnosis
+result = diagnose(user_symptoms)
+print(result)
+
+Rule Based Scenarios for implementation:
+
+You are now supposed to implement any one of the following scenarios. In order to do this, you are suggested to go through all the conditions first and formulate all relevant programing inputs and assumptions clearly. In addition to the final program and output screenshots, summarize your understanding and possible extensions to the rules in the final report
+
+Smart Home Automation System:
+Scenario Evolution:
+Includes custom rules for security, energy efficiency, and convenience.
+Rules:
+1.	If time is 7 AM, turn on bedroom lights.
+2.	If no one is home, turn off all lights.
+3.	If motion detected at night, turn on hallway lights.
+4.	If room temperature < 18°C, turn on heater.
+5.	If room temperature > 25°C, turn on air conditioner.
+6.	If door opened at odd hours, send security alert.
+7.	If window open and rain detected, send close window alert.
+8.	If laundry machine on for >1 hour, turn it off.
+9.	If gas leak detected, turn off gas supply.
+10.	If fridge door open for >5 mins, send alert.
+11.	If car enters driveway, turn on garage lights.
+12.	If guest arrives, activate doorbell camera.
+13.	If vacuum mode activated, pause when motion detected.
+14.	If phone not connected to WiFi for 24 hours, activate away mode.
+15.	If music volume > 70% after 10 PM, lower volume.
+16.	If smart speaker detects "goodnight", turn off all appliances.
+17.	If sunrise detected, open blinds.
+18.	If pet enters restricted area, trigger alarm.
+19.	If trash bin full, send reminder to empty bin.
+20.	If energy consumption exceeds limit, turn off non-essential devices.
+
+code:
+from datetime import datetime
+
+def smart_home_rules(conditions):
+
+    actions = []
+
+    if conditions.get("time") == "07:00":
+        actions.append("Turn on bedroom lights")
+
+    if not conditions.get("someone_home", True):
+        actions.append("Turn off all lights")
+
+    if conditions.get("motion_detected") and conditions.get("is_night"):
+        actions.append("Turn on hallway lights")
+
+    if conditions.get("temperature", 22) < 18:
+        actions.append("Turn on heater")
+
+    if conditions.get("temperature", 22) > 25:
+        actions.append("Turn on air conditioner")
+
+    if conditions.get("door_opened") and conditions.get("odd_hour"):
+        actions.append("Send security alert")
+
+    if conditions.get("window_open") and conditions.get("raining"):
+        actions.append("Send alert to close window")
+
+    if conditions.get("laundry_on_duration", 0) > 60:
+        actions.append("Turn off laundry machine")
+
+    if conditions.get("gas_leak"):
+        actions.append("Turn off gas supply")
+
+    if conditions.get("fridge_open_duration", 0) > 5:
+        actions.append("Send alert: Fridge door open too long")
+
+    if conditions.get("car_in_driveway"):
+        actions.append("Turn on garage lights")
+
+    if conditions.get("guest_arrived"):
+        actions.append("Activate doorbell camera")
+
+    if conditions.get("vacuum_on") and conditions.get("motion_detected"):
+        actions.append("Pause vacuum")
+
+    if conditions.get("phone_disconnected_duration", 0) >= 24:
+        actions.append("Activate away mode")
+
+    if conditions.get("music_volume", 0) > 70 and conditions.get("hour") >= 22:
+        actions.append("Lower music volume")
+
+    if conditions.get("command") == "goodnight":
+        actions.append("Turn off all appliances")
+
+    if conditions.get("sunrise"):
+        actions.append("Open blinds")
+
+    if conditions.get("pet_in_restricted_area"):
+        actions.append("Trigger pet alarm")
+
+    if conditions.get("trash_full"):
+        actions.append("Reminder: Empty trash bin")
+
+    if conditions.get("energy_usage", 0) > conditions.get("energy_limit", 1000):
+        actions.append("Turn off non-essential devices")
+
+    return actions
+
+current_conditions = {
+    "time": "07:00",
+    "someone_home": False,
+    "motion_detected": True,
+    "is_night": True,
+    "temperature": 27,
+    "door_opened": True,
+    "odd_hour": True,
+    "window_open": True,
+    "raining": True,
+    "laundry_on_duration": 65,
+    "gas_leak": False,
+    "fridge_open_duration": 6,
+    "car_in_driveway": True,
+    "guest_arrived": True,
+    "vacuum_on": True,
+    "phone_disconnected_duration": 24,
+    "music_volume": 75,
+    "hour": 22,
+    "command": "goodnight",
+    "sunrise": True,
+    "pet_in_restricted_area": True,
+    "trash_full": True,
+    "energy_usage": 1200,
+    "energy_limit": 1000,
+}
+
+actions = smart_home_rules(current_conditions)
+print("Triggered Actions:")
+for action in actions:
+    print(f"- {action}")
